@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-8">
+        <h1>Formulario</h1>
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="row g-3">
+
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input formControlName="nombre" type="text" [ngClass]="{ 'is-invalid': nombreControlIsInvalid }"
+                    class="form-control" id="nombre">
+                <div *ngIf="nombreControl?.hasError('required') && nombreControlIsInvalid" class="invalid-feedback">
+                    Este campo es requerido.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input formControlName="apellido" type="text" class="form-control" id="apellido">
+            </div>
+
+            <div class="col-md-6">
+                <label for="mail" class="form-label">Email</label>
+                <input [formControl]="emailControl" type="email" [ngClass]="{ 'is-invalid': emailControl.invalid }"
+                    class="form-control" id="mail">
+                <div *ngIf="emailControl.hasError('required')" class="invalid-feedback">
+                    Este campo es requerido.
+                </div>
+                <div *ngIf="emailControl.hasError('email')" class="invalid-feedback">
+                    No es un email valido.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="dni" class="form-label">DNI</label>
+                <input [formControl]="dniControl" [ngClass]="{ 'is-invalid': dniControl.invalid }" type="text"
+                    class="form-control" id="dni">
+                <div class="form-text">Mínimo 8 caracteres.</div>
+                <div *ngIf="dniControl.hasError('required')" class="invalid-feedback">
+                    Este campo es requerido.
+                  </div>
+                  <div *ngIf="dniControl.hasError" class="invalid-feedback">
+                    No es un dni valido.
+                  </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Agregar
+                    </label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
